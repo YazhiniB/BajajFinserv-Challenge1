@@ -11,44 +11,9 @@ This is the frontend application for the Bajaj Finserv Health Challenge. The app
 - **Dynamic Rendering**: Displays filtered results based on user selection.
 - **Title**: The browser tab title is set to your roll number.
 
-## Setup
-
-1. **Clone the Repository**
-
-    ```bash
-    git clone https://github.com/yourusername/frontend-repo.git
-    cd frontend-repo
-    ```
-
-2. **Install Dependencies**
-
-    ```bash
-    npm install
-    ```
-
-3. **Configure Environment Variables**
-
-    Create a `.env` file in the root directory and add the following line:
-
-    ```
-    REACT_APP_API_URL=https://bajajfinservchallenge1-api.onrender.com/bfhl
-    ```
-
-4. **Run the Application Locally**
-
-    ```bash
-    npm start
-    ```
-
-5. **Build the Application**
-
-    ```bash
-    npm run build
-    ```
 
 ## Deployment
-
-To deploy the application, push your changes to GitHub and connect your repository to a hosting provider like Render, Vercel, or Netlify.
+The site is deployed on Render.
 
 ## API Endpoint
 
@@ -62,10 +27,5 @@ The frontend interacts with the following API endpoint:
 2. Select the desired filters from the dropdown menu.
 3. View the filtered results displayed on the page.
 
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-For any questions or issues, please contact [your-email@example.com](mailto:your-email@example.com).
+## URL
+[https://bajajfinserv-challenge1.onrender.com](https://bajajfinserv-challenge1.onrender.com)
