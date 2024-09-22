@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { usePostDataMutation } from './app/api/apiSlice';
 import { Input, Button, Select, Typography, Alert, Card, Space, message } from 'antd';
-import { useTitle } from './hooks/useTitle'; // Import the useTitle hook
-import 'antd/dist/reset.css'; // Ant Design default styles
+import { useTitle } from './hooks/useTitle';
+import 'antd/dist/reset.css';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -10,21 +10,17 @@ const { Title } = Typography;
 
 function App() {
     const [input, setInput] = useState('');
-    const [filter, setFilter] = useState(['Alphabets']); // Set default filter to "Alphabets"
+    const [filter, setFilter] = useState(['Alphabets']);
     const [postData, { data: response, error, isLoading }] = usePostDataMutation();
 
-    // Set the page title to the roll number from the response
-    useTitle(response?.roll_number || 'App');
+    useTitle(response?.roll_number || 'XYZ App');
 
     const handleSubmit = async () => {
         try {
-            // Clear previous error messages
             message.destroy();
-
             const parsedData = JSON.parse(input);
             await postData(parsedData).unwrap();
         } catch (err) {
-            // Display an error message if JSON parsing fails
             message.error('Invalid JSON format. Please check your input.');
             console.error('Invalid JSON format:', err);
         }
@@ -41,27 +37,28 @@ function App() {
     };
 
     return (
-        <div className="App" style={{ padding: '20px' }}>
-            <Title level={2}>{response?.roll_number || 'Please submit JSON data'}</Title>
+        <div className="App" style={{ padding: '30px', backgroundColor: '#f5f5f5' }}>
+            <Title level={2} style={{ color: '#1E90FF' }}>{response?.roll_number || 'Submit your JSON data'}</Title>
             <Space direction="vertical" style={{ width: '100%' }}>
                 <TextArea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    placeholder='Enter JSON data'
+                    placeholder='Paste your JSON data here'
                     rows={4}
-                    style={{ marginBottom: '10px' }}
+                    style={{ marginBottom: '15px', border: '2px solid #1E90FF' }}
                 />
                 <Button 
                     type="primary" 
                     onClick={handleSubmit} 
                     loading={isLoading}
+                    style={{ backgroundColor: '#008080' }}
                 >
                     Submit
                 </Button>
                 {error && (
                     <Alert 
                         message="Error" 
-                        description={error.message || 'Error occurred'} 
+                        description={error.message || 'Something went wrong'} 
                         type="error" 
                         showIcon
                     />
@@ -72,13 +69,13 @@ function App() {
                             mode="multiple" 
                             value={filter} 
                             onChange={handleFilterChange}
-                            style={{ width: '100%', marginBottom: '10px' }}
+                            style={{ width: '100%', marginBottom: '15px' }}
                         >
                             <Option value="Alphabets">Alphabets</Option>
                             <Option value="Numbers">Numbers</Option>
                             <Option value="Highest lowercase alphabet">Highest lowercase alphabet</Option>
                         </Select>
-                        <Card title="Filtered Response" style={{ width: '100%' }}>
+                        <Card title="Filtered Output" style={{ width: '100%' }}>
                             {filter.includes('Numbers') && (
                                 <Card type="inner" title="Numbers">
                                     <pre>{JSON.stringify(filteredResponse.numbers, null, 2)}</pre>
